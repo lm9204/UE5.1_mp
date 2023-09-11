@@ -29,26 +29,29 @@ public:
 	void InGameLoadMenu();
 
 	UFUNCTION(Exec)
-	void Host() override;
+	void Host(FString ServerName) override;
 
 	UFUNCTION(Exec)
 	void Join(uint32 Index) override;
 
 	virtual void LoadMainMenu() override;
 	void Refresh() override;
+	void StartSession();
 
 private:
 	TSubclassOf<class UUserWidget> MenuClass;
 	TSubclassOf<class UUserWidget> InGameMenuClass;
-
 	IOnlineSessionPtr SessionInterface;
 	TSharedPtr<class FOnlineSessionSearch> SessionSearch;
+	FString DesiredServerName;
 	
 	class UMainMenu* Menu;
 
 	void OnCreateSessionComplete(FName SessionName, bool Success);
 	void OnFindSessionComplete(bool Success);
-	void OnDestorySessionComplete(FName SessionName, bool Success);
+	void OnDestroySessionComplete(FName SessionName, bool Success);
 	void OnJoinSessionComplete(FName SessionName, EOnJoinSessionCompleteResult::Type Result);
+	void OnNetworkFailure(UWorld *World, UNetDriver *NetDriver, ENetworkFailure::Type FailureType, const FString &ErrorString);
 	void CreateSession();
+	
 };

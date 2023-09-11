@@ -3,6 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/EditableTextBox.h"
+#include "Components/Button.h"
+#include "Components/WidgetSwitcher.h"
 #include "MenuWidget.h"
 #include "MainMenu.generated.h"
 
@@ -49,6 +52,12 @@ private:
 	class UButton *ConfirmJoinMenuButton;
 
 	UPROPERTY(meta = (BindWidget))
+	class UButton *CancelHostMenuButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton *ConfirmHostMenuButton;
+
+	UPROPERTY(meta = (BindWidget))
 	class UWidgetSwitcher *MenuSwitcher;
 
 	UPROPERTY(meta = (BindWidget))
@@ -56,6 +65,12 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UWidget *JoinMenu;
+	
+	UPROPERTY(meta = (BindWidget))
+	class UWidget *HostMenu;
+
+	UPROPERTY(meta = (BindWidget))
+	UEditableTextBox *ServerHostName;
 
 	UPROPERTY(meta = (BindWidget))
 	class UPanelWidget *ServerList;
@@ -69,6 +84,9 @@ private:
 	UFUNCTION()
 	void OpenJoinMenu();
 
+	UFUNCTION()
+	void OpenHostMenu();
+	
 	UFUNCTION()
 	void OpenMainMenu();
 
